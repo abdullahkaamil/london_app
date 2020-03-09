@@ -31,7 +31,8 @@ class ClientController extends Controller
     public function newClient( Request $request, Client $client )
     {
         $data = [];
-
+        $data['titles'] = $this->titles;
+        $data['modify'] = 1;
         $data['title'] = $request->input('title');
         $data['name'] = $request->input('name');
         $data['last_name'] = $request->input('last_name');
