@@ -18,6 +18,7 @@ class ClientController extends Controller
     public function di()
     {
         dd($this->titles);
+        
     }
 
     public function index()
