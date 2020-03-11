@@ -31,7 +31,8 @@ class ClientController extends Controller
     public function newClient( Request $request, Client $client )
     {
         $data = [];
-
+        $data['titles'] = $this->titles;
+        $data['modify'] = 1;
         $data['title'] = $request->input('title');
         $data['name'] = $request->input('name');
         $data['last_name'] = $request->input('last_name');
@@ -73,7 +74,7 @@ class ClientController extends Controller
             return view('client/create');
     }
 
-    public function show($client_id)
+    public function show($client_id, Request $request)
     {
         $data = [];
         $data['titles'] = $this->titles;
@@ -88,6 +89,10 @@ class ClientController extends Controller
         $data['state'] = $client_data->state;
         $data['email'] = $client_data->email;
         
+
+        $request->session()->put('last_updated', $client_data->name . " ".  $client_data->last_name );
+
+
         return view('client/form', $data);
     }
 
